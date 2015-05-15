@@ -1,0 +1,5 @@
+be sure to include the header directory
+
+be sure to include the library directorys and list them under input
+
+NEED to have pmdaccess2.dll plus all the pap, ppp files in the project directory.  
