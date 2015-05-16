@@ -22,7 +22,6 @@ bld/
 [Bb]in/
 [Oo]bj/
 PMDCamera/PMDCamera/record/
-PMDCamera/PMDCamera/PMDCamera.vcxproj
 PMDCamera/PMDCamera/PMDCamera.vcxproj.filters
 
 # Visual Studo 2015 cache/options directory

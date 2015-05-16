@@ -45,10 +45,10 @@ int main (int argc, char *argv[])
 	{
 		res = pmdSetIntegrationTime(hnd, 0, i * 1000);
 		checkError(hnd, res);
-		filename = "record\\distance_";
+		filename = "..\\..\\..\\tmp\\distance_";
 		filename = filename + std::to_string(i) + ".txt";
 		fout.open(filename);
-		filename = "record\\intensity_";
+		filename = "..\\..\\..\\tmp\\intensity_";
 		filename = filename + std::to_string(i) + ".txt";
 		fout2.open(filename);
 		for (j = 0; j < 200; j++)
