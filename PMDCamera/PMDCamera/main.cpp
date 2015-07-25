@@ -37,8 +37,8 @@ int main (int argc, char *argv[])
 
 	float * dist = new float [dd.img.numRows * dd.img.numColumns];
 	float * intensity = new float[dd.img.numRows * dd.img.numColumns];
-
-	std::ofstream fout, fout2;
+	float * amplitude = new float[dd.img.numRows * dd.img.numColumns];
+	std::ofstream fout, fout2, fout3;
 	std::string filename;
 	unsigned int i, j, k;
 	for (i = 1; i <= 50; i++) 
@@ -51,24 +51,32 @@ int main (int argc, char *argv[])
 		filename = "..\\..\\..\\tmp\\intensity_";
 		filename = filename + std::to_string(i) + ".txt";
 		fout2.open(filename);
+		filename = "..\\..\\..\\tmp\\amplitude_";
+		filename = filename + std::to_string(i) + ".txt";
+		fout3.open(filename);
 		for (j = 0; j < 200; j++)
 		{
 			res = pmdUpdate(hnd);
 			checkError(hnd, res);
-			res = pmdGetAmplitudes(hnd, intensity, dd.img.numColumns * dd.img.numRows * sizeof(float));
+			res = pmdGetAmplitudes(hnd, amplitude, dd.img.numColumns * dd.img.numRows * sizeof(float));
 			checkError(hnd, res);
 			res = pmdGetDistances(hnd, dist, dd.img.numColumns * dd.img.numRows * sizeof(float));
+			checkError(hnd, res);
+			res = pmdGetIntensities(hnd, intensity, dd.img.numColumns * dd.img.numRows * sizeof(float));
 			checkError(hnd, res);
 			for (k = 0; k < dd.img.numColumns * dd.img.numRows; k++)
 			{
 				fout << dist[k] << ' ';
 				fout2 << intensity[k] << ' ';
+				fout3 << amplitude[k] << ' ';
 			}
 			fout << std::endl;
 			fout2 << std::endl;
+			fout3 << std::endl;
 		}
 		fout.close();
 		fout2.close();
+		fout3.close();
 	}
 
 	printf ("Middle distance: %f m\n", dist[(dd.img.numRows / 2) * dd.img.numColumns + dd.img.numColumns / 2]);
